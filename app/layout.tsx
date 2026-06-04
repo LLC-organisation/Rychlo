@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// @ts-ignore: CSS module side-effect import declaration
 import "./globals.css";
+import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://biashara-automation.com";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: "Biashara Automation | Business Automation Solutions",
     template: "%s | Biashara Automation",
