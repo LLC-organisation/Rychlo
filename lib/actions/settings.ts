@@ -26,7 +26,7 @@ export async function updateSiteSettings(formData: FormData) {
   };
 
   const parsed = settingsSchema.safeParse(raw);
-  if (!parsed.success) return { error: "Invalid settings." };
+  if (!parsed.success) return;
 
   // Replace empty strings with null
   const data = Object.fromEntries(
