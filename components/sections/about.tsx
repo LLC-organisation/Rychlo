@@ -83,19 +83,19 @@ function TeamCard({ name, role, bio, initials, index }: TeamCardProps) {
 const team: Omit<TeamCardProps, "index">[] = [
   {
     name: "Victor Kamiri",
-    role: "Co-Founder · UI/UX Engineer & Marketing Lead",
+    role: "Co-Founder · Mobile & Frontend UI/UX Engineer & Marketing Lead",
     initials: "VK",
     bio: "Victor leads design and marketing at Amek. He builds the interfaces our clients interact with every day and makes sure complex technology feels straightforward to use.",
   },
   {
     name: "Lee Haney",
-    role: "Co-Founder · Tech & AI Lead",
+    role: "Co-Founder · Tech & AI Engineering Lead",
     initials: "LH",
     bio: "Lee is the one who figures out how to build it. He leads our engineering work, designs the AI systems we deploy, and makes sure everything we ship is reliable and well-built.",
   },
   {
     name: "George Akai",
-    role: "Co-Founder · Cybersecurity Lead & AI Architect",
+    role: "Co-Founder · Cybersecurity Lead & AI Engineer",
     initials: "GA",
     bio: "George keeps our systems, and our clients' systems, secure. He leads cybersecurity across all our projects and designs the architecture that handles sensitive data responsibly.",
   },
