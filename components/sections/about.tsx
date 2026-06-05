@@ -97,7 +97,7 @@ const team: Omit<TeamCardProps, "index">[] = [
     name: "George Akai",
     role: "Co-Founder · Cybersecurity Lead & AI Architect",
     initials: "GA",
-    bio: "George keeps our systems — and our clients' systems — secure. He leads cybersecurity across all our projects and designs the architecture that handles sensitive data responsibly.",
+    bio: "George keeps our systems, and our clients' systems, secure. He leads cybersecurity across all our projects and designs the architecture that handles sensitive data responsibly.",
   },
 ];
 
@@ -125,7 +125,7 @@ export function AboutSection() {
             <p className="text-white/80 leading-relaxed">
               Our work is simple: take the tasks that eat up your team's time and
               build systems to handle them automatically. The goal isn't just
-              efficiency — it's giving people space to do the kind of work they
+              efficiency. It's giving people space to do the kind of work they
               actually want to do.
             </p>
           </motion.div>
@@ -201,8 +201,8 @@ export function AboutSection() {
           </div>
           <p className="text-white/80 leading-relaxed text-base max-w-3xl">
             Amek came out of a straightforward observation: most businesses spend too much time on work
-            that technology could handle. We saw teams doing the same manual tasks day after day —
-            data entry, chasing approvals, pulling reports — and knew there was a better way.
+            that technology could handle. We saw teams doing the same manual tasks day after day:
+            data entry, chasing approvals, pulling reports. We knew there was a better way.
             We built Amek to offer practical, well-engineered solutions: automation that actually runs,
             security that holds up, and a team that stays accountable long after the project is delivered.
           </p>

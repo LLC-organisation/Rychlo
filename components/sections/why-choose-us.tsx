@@ -46,7 +46,7 @@ const reasons: Omit<ReasonCardProps, "index">[] = [
   {
     icon: DollarSign,
     title: "Lower Operational Costs",
-    description: "Replace manual, time-intensive tasks with automated systems — keep your output high without expanding your team.",
+    description: "Replace manual, time-intensive tasks with automated systems and keep your output high without expanding your team.",
   },
   {
     icon: TrendingUp,
@@ -61,7 +61,7 @@ const reasons: Omit<ReasonCardProps, "index">[] = [
   {
     icon: Clock,
     title: "Faster Turnaround",
-    description: "Tasks that used to take hours run in minutes — without anyone sitting in front of a screen watching them.",
+    description: "Tasks that used to take hours run in minutes, without anyone sitting in front of a screen watching them.",
   },
   {
     icon: Settings,
@@ -113,7 +113,7 @@ export function WhyChooseUsSection() {
         >
           <div>
             <h3 className="text-white font-semibold text-xl mb-1">Curious what this would look like for your business?</h3>
-            <p className="text-white/60 text-sm">We'll walk you through a free 30-minute consultation — no pressure, no sales script.</p>
+            <p className="text-white/60 text-sm">We'll walk you through a free 30-minute consultation. No pressure, no sales script.</p>
           </div>
           <Button size="lg" onClick={handleScroll} className="shrink-0 gap-2">
             Get a Free Consultation <ArrowRight size={16} />

@@ -69,13 +69,13 @@ const services: Omit<ServiceCardProps, "index">[] = [
   {
     icon: FileText,
     title: "Tax Automation",
-    description: "We build systems that handle tax calculations, filing, and compliance tracking automatically — so your team isn't scrambling when deadlines hit.",
+    description: "We build systems that handle tax calculations, filing, and compliance tracking automatically, so your team isn't scrambling when deadlines hit.",
     benefits: ["No more manual data entry at year-end", "Automatic compliance checks", "Fewer costly filing mistakes"],
   },
   {
     icon: ScanLine,
     title: "Document Processing",
-    description: "Invoices, contracts, applications — we build pipelines that extract the right data and route it where it needs to go, without anyone having to touch it.",
+    description: "Invoices, contracts, applications: we build pipelines that extract the right data and route it where it needs to go, without anyone having to touch it.",
     benefits: ["Process documents in seconds, not hours", "Handles PDFs, emails, and scanned forms", "No manual data entry"],
   },
   {
@@ -87,7 +87,7 @@ const services: Omit<ServiceCardProps, "index">[] = [
   {
     icon: Bot,
     title: "AI Assistants",
-    description: "We build AI assistants trained on your business — your products, your processes, your tone — so your team isn't answering the same questions all day.",
+    description: "We build AI assistants trained on your business: your products, your processes, your tone. Your team stops answering the same questions all day.",
     benefits: ["Instant responses to common questions", "Handles intake forms and basic support", "Gets smarter as your business grows"],
   },
   {
@@ -122,7 +122,7 @@ export function ServicesSection() {
           <h2 className="text-white">Our Services</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            We build practical technology that solves specific problems — from automating repetitive tasks to securing your systems and connecting your tools.
+            We build practical technology that solves specific problems, from automating repetitive tasks to securing your systems and connecting your tools.
           </p>
         </motion.div>
 

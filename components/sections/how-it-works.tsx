@@ -14,7 +14,7 @@ const steps: Step[] = [
   {
     number: 1,
     title: "Tell us what's slowing you down",
-    description: "We start with a conversation — what tasks take too long, what keeps breaking, and where your team is spending time it shouldn't have to.",
+    description: "We start with a conversation about what tasks take too long, what keeps breaking, and where your team is spending time it shouldn't have to.",
   },
   {
     number: 2,
@@ -24,7 +24,7 @@ const steps: Step[] = [
   {
     number: 3,
     title: "We design a solution for you",
-    description: "No templates. We build an automation plan specific to how your business actually works — then walk you through it before anything gets built.",
+    description: "No templates. We build an automation plan specific to how your business actually works, then walk you through it before anything gets built.",
   },
   {
     number: 4,
@@ -56,7 +56,7 @@ export function HowItWorksSection() {
           <h2 className="text-white">How It Works</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            From the first call to a live, running system — here's what working with us actually looks like.
+            From the first call to a live, running system. Here's what working with us actually looks like.
           </p>
         </motion.div>
 
