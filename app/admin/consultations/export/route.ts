@@ -6,19 +6,7 @@ export async function GET() {
     orderBy: { createdAt: "desc" },
   });
 
-  const headers = [
-    "ID",
-    "Full Name",
-    "Company Name",
-    "Email",
-    "Phone",
-    "Industry",
-    "Company Size",
-    "Business Challenge",
-    "Desired Outcome",
-    "Submitted At",
-  ];
-
+  const headers = ["ID", "Full Name", "Company Name", "Email", "Phone", "Submitted At"];
   const escape = (v: string) => `"${v.replace(/"/g, '""')}"`;
 
   const csvRows = [
@@ -30,10 +18,6 @@ export async function GET() {
         escape(r.companyName),
         escape(r.email),
         escape(r.phone),
-        escape(r.industry),
-        escape(r.companySize),
-        escape(r.businessChallenge),
-        escape(r.desiredOutcome),
         r.createdAt.toISOString(),
       ].join(",")
     ),
@@ -44,7 +28,7 @@ export async function GET() {
   return new NextResponse(csvRows.join("\r\n"), {
     headers: {
       "Content-Type": "text/csv",
-      "Content-Disposition": `attachment; filename="consultations-${date}.csv"`,
+      "Content-Disposition": `attachment; filename="leads-${date}.csv"`,
     },
   });
 }

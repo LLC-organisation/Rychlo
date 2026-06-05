@@ -2,38 +2,26 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const TO = process.env.RESEND_TO_EMAIL ?? "team@biashara-automation.com";
-const FROM = process.env.RESEND_FROM_EMAIL ?? "noreply@biashara-automation.com";
+const TO = process.env.RESEND_TO_EMAIL ?? "team@amek.tech";
+const FROM = process.env.RESEND_FROM_EMAIL ?? "noreply@amek.tech";
 
 export async function sendConsultationNotification(data: {
   fullName: string;
   companyName: string;
   email: string;
   phone: string;
-  industry: string;
-  companySize: string;
-  businessChallenge: string;
-  desiredOutcome: string;
 }) {
   await resend.emails.send({
     from: FROM,
     to: TO,
-    subject: `New Consultation Request — ${data.companyName}`,
+    subject: `New Lead — ${data.fullName} (${data.companyName})`,
     text: `
-New consultation request received.
+New consultation lead received.
 
-Name: ${data.fullName}
+Name:    ${data.fullName}
 Company: ${data.companyName}
-Email: ${data.email}
-Phone: ${data.phone}
-Industry: ${data.industry}
-Company Size: ${data.companySize}
-
-Business Challenge:
-${data.businessChallenge}
-
-Desired Outcome:
-${data.desiredOutcome}
+Email:   ${data.email}
+Phone:   ${data.phone}
     `.trim(),
   });
 }

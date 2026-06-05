@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
-  { label: "Solutions", href: "#solutions" },
+  { label: "How It Works", href: "#how-it-works" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -19,9 +19,7 @@ export function Navigation() {
   const handleScroll = (href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -30,15 +28,15 @@ export function Navigation() {
         {/* Logo */}
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
-              <span className="text-black font-bold text-sm">B</span>
+            <div className="w-8 h-8 rounded-md bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+              <span className="text-white font-bold text-sm">A</span>
             </div>
             <span className="text-white font-semibold text-lg leading-tight">
-              Biashara Automation
+              Amek Technology
             </span>
           </div>
-          <span className="text-yellow-500 text-xs font-medium ml-10 -mt-0.5">
-            Automate. Grow. Thrive.
+          <span className="text-blue-400 text-xs font-medium ml-10 -mt-0.5">
+            Build. Automate. Scale.
           </span>
         </div>
 
@@ -58,7 +56,7 @@ export function Navigation() {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <Button size="sm" onClick={() => handleScroll("#contact")}>
-            Request Consultation
+            Book Free Consultation
           </Button>
         </div>
 
@@ -84,11 +82,8 @@ export function Navigation() {
               {link.label}
             </button>
           ))}
-          <Button
-            className="w-full mt-2"
-            onClick={() => handleScroll("#contact")}
-          >
-            Request Consultation
+          <Button className="w-full mt-2" onClick={() => handleScroll("#contact")}>
+            Book Free Consultation
           </Button>
         </div>
       )}

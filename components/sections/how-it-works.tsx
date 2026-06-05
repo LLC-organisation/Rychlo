@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface Step {
   number: number;
@@ -11,41 +13,39 @@ interface Step {
 const steps: Step[] = [
   {
     number: 1,
-    title: "Tell us about your challenge",
-    description:
-      "Share the repetitive tasks and bottlenecks slowing your business down.",
+    title: "Tell us your challenge",
+    description: "Share the bottlenecks and repetitive tasks slowing your business down.",
   },
   {
     number: 2,
     title: "We analyze your workflow",
-    description:
-      "Our team maps your current processes and identifies the best automation opportunities.",
+    description: "Our team maps your current processes and identifies the best automation opportunities.",
   },
   {
     number: 3,
     title: "We design your solution",
-    description:
-      "We build a custom automation blueprint tailored to your specific operations.",
+    description: "We build a custom automation blueprint tailored to your specific operations.",
   },
   {
     number: 4,
-    title: "We implement automation",
-    description:
-      "Our engineers deploy and test your automation, integrating seamlessly with your existing tools.",
+    title: "We implement & integrate",
+    description: "Our engineers deploy and test your automation, connecting seamlessly with your existing tools.",
   },
   {
     number: 5,
-    title: "We support and optimize",
-    description:
-      "We monitor performance and continuously improve your automations as your business evolves.",
+    title: "We support & optimize",
+    description: "We monitor performance and continuously improve your automations as your business evolves.",
   },
 ];
 
 export function HowItWorksSection() {
+  const handleScroll = () => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="how-it-works" className="py-24 bg-black">
       <div className="container flex flex-col gap-16">
-        {/* Heading */}
         <motion.div
           className="flex flex-col items-center text-center gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -54,10 +54,9 @@ export function HowItWorksSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-white">How It Works</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            A proven five-step process to take you from bottleneck to
-            fully automated.
+            A proven five-step process to take you from bottleneck to fully automated.
           </p>
         </motion.div>
 
@@ -72,29 +71,19 @@ export function HowItWorksSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
               >
-                {/* Number circle + connector row */}
                 <div className="relative flex items-center w-full justify-center">
-                  {/* Left connector */}
                   {i > 0 && (
-                    <div className="absolute right-1/2 top-1/2 -translate-y-1/2 w-1/2 h-px bg-yellow-500/40" />
+                    <div className="absolute right-1/2 top-1/2 -translate-y-1/2 w-1/2 h-px bg-blue-500/40" />
                   )}
-                  {/* Right connector */}
                   {i < steps.length - 1 && (
-                    <div className="absolute left-1/2 top-1/2 -translate-y-1/2 w-1/2 h-px bg-yellow-500/40" />
+                    <div className="absolute left-1/2 top-1/2 -translate-y-1/2 w-1/2 h-px bg-blue-500/40" />
                   )}
-                  <div className="relative z-10 w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
-                    <span className="text-black font-bold text-lg">
-                      {step.number}
-                    </span>
+                  <div className="relative z-10 w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">{step.number}</span>
                   </div>
                 </div>
-
-                <h3 className="text-white text-base font-semibold">
-                  {step.title}
-                </h3>
-                <p className="text-white/60 text-sm leading-relaxed">
-                  {step.description}
-                </p>
+                <h3 className="text-white text-base font-semibold">{step.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             </div>
           ))}
@@ -104,23 +93,20 @@ export function HowItWorksSection() {
         <div className="flex lg:hidden flex-col gap-0">
           {steps.map((step, i) => (
             <div key={step.number} className="flex gap-4">
-              {/* Left: number + vertical line */}
               <div className="flex flex-col items-center">
                 <motion.div
-                  className="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center shrink-0"
+                  className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shrink-0"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <span className="text-black font-bold">{step.number}</span>
+                  <span className="text-white font-bold">{step.number}</span>
                 </motion.div>
                 {i < steps.length - 1 && (
-                  <div className="w-px flex-1 bg-yellow-500/30 my-2" />
+                  <div className="w-px flex-1 bg-blue-500/30 my-2" />
                 )}
               </div>
-
-              {/* Right: content */}
               <motion.div
                 className="flex flex-col gap-1 pb-8"
                 initial={{ opacity: 0, x: 16 }}
@@ -129,13 +115,25 @@ export function HowItWorksSection() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <h3 className="text-white font-semibold">{step.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">
-                  {step.description}
-                </p>
+                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             </div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          className="flex flex-col items-center gap-3"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-white/60 text-sm">Ready to start your automation journey?</p>
+          <Button size="lg" onClick={handleScroll} className="gap-2">
+            Start in 5 Minutes <ArrowRight size={16} />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

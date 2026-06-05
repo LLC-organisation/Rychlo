@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/sections/hero";
 import { ServicesSection } from "@/components/sections/services";
-import { CapabilitiesSection } from "@/components/sections/capabilities";
 import { HowItWorksSection } from "@/components/sections/how-it-works";
 import { WhyChooseUsSection } from "@/components/sections/why-choose-us";
 import { CaseStudiesSection } from "@/components/sections/case-studies";
@@ -16,7 +15,6 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <ServicesSection />
-        <CapabilitiesSection />
         <HowItWorksSection />
         <WhyChooseUsSection />
         <CaseStudiesSection />

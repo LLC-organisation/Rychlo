@@ -5,39 +5,39 @@ import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://biashara-automation.com";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://amek.tech";
 
 export const metadata = {
   title: {
-    default: "Biashara Automation | Business Automation Solutions",
-    template: "%s | Biashara Automation",
+    default: "Amek Technology Solutions | AI & Automation Experts",
+    template: "%s | Amek Technology Solutions",
   },
   description:
-    "We help businesses eliminate repetitive work through intelligent automation solutions tailored to their needs. Tax automation, document processing, AI assistants, and more.",
+    "Amek Technology Solutions delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Biashara Automation | Business Automation Solutions",
+    title: "Amek Technology Solutions | AI & Automation Experts",
     description:
-      "Automate Your Business. Focus on Growth. Intelligent automation solutions for non-technical business owners.",
+      "AI automation, cybersecurity, and custom software for growing businesses.",
     url: siteUrl,
-    siteName: "Biashara Automation",
+    siteName: "Amek Technology Solutions",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Biashara Automation | Business Automation Solutions",
-    description:
-      "Automate Your Business. Focus on Growth.",
+    title: "Amek Technology Solutions | AI & Automation Experts",
+    description: "Build. Automate. Scale.",
   },
   keywords: [
     "AI Automation",
     "Business Automation",
-    "Workflow Automation",
+    "Cybersecurity",
     "AI Consulting",
     "Digital Transformation",
-    "Tax Automation",
-    "Document Processing",
+    "Workflow Automation",
+    "Custom Software",
+    "Amek Technology",
   ],
   robots: {
     index: true,

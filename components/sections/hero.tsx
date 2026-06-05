@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { ArrowRight, CalendarCheck } from "lucide-react";
 
 export function HeroSection() {
   const handleScroll = (href: string) => {
@@ -18,27 +19,41 @@ export function HeroSection() {
       {/* Background image */}
       <Image
         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80"
-        alt="Business automation background"
+        alt="Technology background"
         fill
         className="object-cover"
         priority
       />
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/95" />
+
+      {/* Blue accent glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(59,130,246,0.08)_0%,_transparent_70%)]" />
 
       {/* Content */}
       <div className="container relative z-10 flex flex-col items-center text-center gap-8 py-32">
+        {/* Badge */}
+        <motion.div
+          className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-1.5"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+          <span className="text-blue-300 text-sm font-medium">AI · Automation · Cybersecurity</span>
+        </motion.div>
+
         {/* Headline */}
         <motion.h1
           className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight max-w-4xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
-          <span className="text-white">Automate Your Business.</span>{" "}
-          <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-            Focus on Growth.
+          <span className="text-white">Intelligent Technology</span>{" "}
+          <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            Built for Growth.
           </span>
         </motion.h1>
 
@@ -49,8 +64,8 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
-          We help businesses eliminate repetitive work through intelligent
-          automation solutions tailored to their needs.
+          Amek Technology Solutions delivers AI-powered automation, cybersecurity,
+          and custom software that eliminates manual work and scales with your business.
         </motion.p>
 
         {/* Buttons */}
@@ -58,18 +73,36 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
         >
-          <Button size="lg" onClick={() => handleScroll("#contact")}>
-            Request Consultation
+          <Button size="lg" onClick={() => handleScroll("#contact")} className="gap-2">
+            <CalendarCheck size={18} />
+            Book Free Consultation
           </Button>
           <Button
             size="lg"
             variant="outline"
             onClick={() => handleScroll("#services")}
+            className="gap-2"
           >
-            Explore Solutions
+            Explore Our Services
+            <ArrowRight size={16} />
           </Button>
+        </motion.div>
+
+        {/* Social proof strip */}
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+        >
+          {["Workflow Automation", "AI Assistants", "Cybersecurity", "System Integrations"].map((tag) => (
+            <span key={tag} className="text-white/40 text-sm flex items-center gap-1.5">
+              <span className="w-1 h-1 bg-blue-500 rounded-full" />
+              {tag}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>

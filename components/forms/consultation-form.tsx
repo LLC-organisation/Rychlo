@@ -5,19 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Loader2, CheckCircle } from "lucide-react";
-import { consultationSchema, COMPANY_SIZES, type ConsultationFormData } from "@/lib/schemas/consultation";
+import { consultationSchema, type ConsultationFormData } from "@/lib/schemas/consultation";
 import { submitConsultationRequest } from "@/lib/actions/consultation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 export function ConsultationForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -25,8 +17,6 @@ export function ConsultationForm() {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<ConsultationFormData>({
     resolver: zodResolver(consultationSchema),
@@ -46,18 +36,18 @@ export function ConsultationForm() {
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <CheckCircle className="text-yellow-500 mb-4" size={56} />
-        <h3 className="text-white text-2xl font-semibold mb-2">Request Received!</h3>
+        <CheckCircle className="text-blue-400 mb-4" size={56} />
+        <h3 className="text-white text-2xl font-semibold mb-2">We'll be in touch!</h3>
         <p className="text-white/70 max-w-md">
-          Thank you for reaching out. We'll be in touch within 1 business day to schedule your consultation.
+          Thanks for reaching out. Our team will contact you within 1 business day to discuss your needs.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="fullName">Full Name *</Label>
           <Input
@@ -112,7 +102,7 @@ export function ConsultationForm() {
           <Input
             id="phone"
             type="tel"
-            placeholder="+1 555 0100"
+            placeholder="+254 700 000 000"
             aria-describedby={errors.phone ? "phone-error" : undefined}
             aria-invalid={!!errors.phone}
             {...register("phone")}
@@ -123,94 +113,16 @@ export function ConsultationForm() {
             </p>
           )}
         </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="industry">Industry *</Label>
-          <Input
-            id="industry"
-            placeholder="e.g. Healthcare, Logistics, Finance"
-            aria-describedby={errors.industry ? "industry-error" : undefined}
-            aria-invalid={!!errors.industry}
-            {...register("industry")}
-          />
-          {errors.industry && (
-            <p id="industry-error" role="alert" className="text-sm text-red-400">
-              {errors.industry.message}
-            </p>
-          )}
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="companySize">Company Size *</Label>
-          <Select
-            onValueChange={(val) => setValue("companySize", val as ConsultationFormData["companySize"], { shouldValidate: true })}
-            value={watch("companySize")}
-          >
-            <SelectTrigger
-              id="companySize"
-              aria-describedby={errors.companySize ? "companySize-error" : undefined}
-              aria-invalid={!!errors.companySize}
-            >
-              <SelectValue placeholder="Select size" />
-            </SelectTrigger>
-            <SelectContent>
-              {COMPANY_SIZES.map((size) => (
-                <SelectItem key={size} value={size}>
-                  {size} employees
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.companySize && (
-            <p id="companySize-error" role="alert" className="text-sm text-red-400">
-              {errors.companySize.message}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="businessChallenge">Business Challenge *</Label>
-        <Textarea
-          id="businessChallenge"
-          rows={4}
-          placeholder="Describe the repetitive tasks or business problems you want to solve..."
-          aria-describedby={errors.businessChallenge ? "businessChallenge-error" : undefined}
-          aria-invalid={!!errors.businessChallenge}
-          {...register("businessChallenge")}
-        />
-        {errors.businessChallenge && (
-          <p id="businessChallenge-error" role="alert" className="text-sm text-red-400">
-            {errors.businessChallenge.message}
-          </p>
-        )}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="desiredOutcome">Desired Outcome *</Label>
-        <Textarea
-          id="desiredOutcome"
-          rows={4}
-          placeholder="What does success look like? What would change if this problem was solved?"
-          aria-describedby={errors.desiredOutcome ? "desiredOutcome-error" : undefined}
-          aria-invalid={!!errors.desiredOutcome}
-          {...register("desiredOutcome")}
-        />
-        {errors.desiredOutcome && (
-          <p id="desiredOutcome-error" role="alert" className="text-sm text-red-400">
-            {errors.desiredOutcome.message}
-          </p>
-        )}
       </div>
 
       <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? (
           <>
             <Loader2 className="animate-spin" size={18} />
-            Submitting...
+            Sending...
           </>
         ) : (
-          "Request Consultation"
+          "Book Free Consultation"
         )}
       </Button>
     </form>
