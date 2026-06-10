@@ -8,6 +8,8 @@ import {
   Handshake,
   Lock,
   ArrowRight,
+  Globe,
+  ExternalLink,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -48,15 +50,22 @@ const values: Omit<ValueCardProps, "index">[] = [
   { icon: Lock, title: "Security First" },
 ];
 
+interface TeamLink {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+}
+
 interface TeamCardProps {
   name: string;
   role: string;
   bio: string;
   initials: string;
   index: number;
+  links?: TeamLink[];
 }
 
-function TeamCard({ name, role, bio, initials, index }: TeamCardProps) {
+function TeamCard({ name, role, bio, initials, index, links }: TeamCardProps) {
   return (
     <motion.div
       className={cn(
@@ -76,6 +85,25 @@ function TeamCard({ name, role, bio, initials, index }: TeamCardProps) {
         <p className="text-blue-400 text-sm font-medium">{role}</p>
       </div>
       <p className="text-white/60 text-sm leading-relaxed">{bio}</p>
+      {links && links.length > 0 && (
+        <div className="pt-2 border-t border-zinc-800 flex flex-col gap-2">
+          <p className="text-zinc-500 text-xs font-medium uppercase tracking-wide">Connect</p>
+          <div className="flex flex-wrap gap-3">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-white/60 hover:text-blue-400 text-sm transition-colors duration-200"
+              >
+                <link.icon size={14} />
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -91,13 +119,17 @@ const team: Omit<TeamCardProps, "index">[] = [
     name: "Lee Haney",
     role: "Co-Founder · Tech & AI Engineering Lead",
     initials: "LH",
-    bio: "Lee is the one who figures out how to build it. He leads our engineering work, designs the AI systems we deploy, and makes sure everything we ship is reliable and well-built.",
+    bio: "Lee drives the technical direction at Rychlo. He leads our engineering work, designs the Software and AI systems we deploy, and makes sure everything we ship is reliable and well-built.",
   },
   {
     name: "George Akai",
     role: "Co-Founder · Cybersecurity Lead & AI Engineer",
     initials: "GA",
     bio: "George keeps our systems, and our clients' systems, secure. He leads cybersecurity across all our projects and designs the architecture that handles sensitive data responsibly.",
+    links: [
+      { href: "https://about-george-akai.vercel.app", label: "Personal Site", icon: Globe },
+      { href: "https://linkedin.com/in/georgeakai", label: "LinkedIn", icon: ExternalLink },
+    ],
   },
 ];
 

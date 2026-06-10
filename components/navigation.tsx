@@ -27,22 +27,17 @@ export function Navigation() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
       <div className="container flex items-center justify-between h-20">
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5">
           <Image
             src="/logo.jpeg"
             alt="Rychlo"
-            width={80}
-            height={80}
+            width={50}
+            height={50}
             className="rounded-md object-contain"
           />
-          <div className="flex flex-col">
-            <span className="text-white font-semibold text-lg leading-tight">
-              Rychlo
-            </span>
-            <span className="text-blue-400 text-xs font-medium">
-              Build. Automate. Scale.
-            </span>
-          </div>
+          <span className="text-white font-semibold text-xl leading-tight">
+            Rychlo
+          </span>
         </div>
 
         {/* Desktop nav */}

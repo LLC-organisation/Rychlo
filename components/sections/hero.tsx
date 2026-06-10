@@ -41,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-blue-300 text-sm font-medium">Automation · AI · Cybersecurity</span>
+          <span className="text-blue-300 text-sm font-medium">Build. Automate. Scale.</span>
         </motion.div>
 
         {/* Headline */}
