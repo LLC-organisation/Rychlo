@@ -312,7 +312,7 @@ export function ChatbotWidget() {
       <button
         onClick={() => (open ? handleClose() : setOpen(true))}
         aria-label={open ? "Close chat" : "Open Rychlo AI chat"}
-        className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-900/50 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+        className={`fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-900/50 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 ${open && mobile ? "hidden" : ""}`}
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
