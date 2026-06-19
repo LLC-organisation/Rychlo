@@ -1,5 +1,14 @@
+import { z } from "zod";
 import { contactBaseSchema } from "./contact-base";
 
-export const consultationSchema = contactBaseSchema;
+const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "").trim();
 
-export type ConsultationFormData = typeof consultationSchema._type;
+export const consultationSchema = contactBaseSchema.extend({
+  message: z
+    .string()
+    .max(2000, "Message must be under 2000 characters")
+    .optional()
+    .transform((v) => (v ? stripHtml(v) : v)),
+});
+
+export type ConsultationFormData = z.infer<typeof consultationSchema>;

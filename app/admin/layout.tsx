@@ -24,13 +24,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <div className="flex items-center gap-2">
             <Image
               src="/logo.jpeg"
-              alt="Rychlo Technology Solutions"
+              alt="Akihlee"
               width={48}
               height={48}
               className="rounded-md object-cover"
             />
             <div>
-              <p className="text-white font-semibold text-sm">Rychlo Technology</p>
+              <p className="text-white font-semibold text-sm">Akihlee</p>
               <p className="text-zinc-400 text-xs">Admin Panel</p>
             </div>
           </div>

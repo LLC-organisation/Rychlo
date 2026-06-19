@@ -14,6 +14,7 @@ export async function submitConsultationRequest(
     companyName: formData.get("companyName"),
     email: formData.get("email"),
     phone: formData.get("phone"),
+    message: formData.get("message"),
   });
 
   if (!parsed.success) {

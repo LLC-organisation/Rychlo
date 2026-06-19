@@ -26,13 +26,24 @@ const INIT_W = 360;
 const clamp = (v: number, lo: number, hi: number) =>
   Math.min(Math.max(v, lo), hi);
 
+const CONTACT_TRIGGERS = [
+  "book a", "free call", "free strategy", "contact us", "reach out",
+  "get in touch", "schedule", "consultation", "contact form", "email us",
+  "scroll to", "fill out", "fill in",
+];
+
+function shouldNotify(text: string) {
+  const lower = text.toLowerCase();
+  return CONTACT_TRIGGERS.some((t) => lower.includes(t));
+}
+
 export function ChatbotWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
       content:
-        "Hi! I'm Rychlo AI. Ask me anything about our services, how we work, or how we can help your business automate and scale.",
+        "Hi! I'm Akihlee AI. Ask me anything about our services, how we work, or how we can help your business automate and scale.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -47,6 +58,10 @@ export function ChatbotWidget() {
   const abortRef = useRef<AbortController | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const notifiedRef = useRef(false);
+  const hasContactSuggestionRef = useRef(false);
+  const messagesRef = useRef(messages);
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
 
   // ── mobile detection ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -196,13 +211,16 @@ export function ChatbotWidget() {
         }
       }
 
-      setMessages((prev) => [
-        ...prev.slice(0, -1),
-        {
-          role: "assistant",
-          content: acc || "Sorry, I didn't get a response. Please try again.",
-        },
-      ]);
+      const finalContent = acc || "Sorry, I didn't get a response. Please try again.";
+      const finalMessages = [
+        ...history,
+        { role: "assistant" as const, content: finalContent },
+      ];
+      setMessages(finalMessages.map((m) => ({ role: m.role, content: m.content })));
+
+      if (shouldNotify(finalContent)) {
+        hasContactSuggestionRef.current = true;
+      }
     } catch (err: unknown) {
       if ((err as Error).name === "AbortError") return;
       setMessages((prev) => [
@@ -225,6 +243,14 @@ export function ChatbotWidget() {
   function handleClose() {
     abortRef.current?.abort();
     setOpen(false);
+    if (hasContactSuggestionRef.current && !notifiedRef.current) {
+      notifiedRef.current = true;
+      fetch("/api/chat/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: messagesRef.current }),
+      }).catch(() => {});
+    }
   }
 
   // ── shared UI ─────────────────────────────────────────────────────────────
@@ -311,7 +337,7 @@ export function ChatbotWidget() {
       {/* ── floating toggle button ── */}
       <button
         onClick={() => (open ? handleClose() : setOpen(true))}
-        aria-label={open ? "Close chat" : "Open Rychlo AI chat"}
+        aria-label={open ? "Close chat" : "Open Akihlee AI chat"}
         className={`fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-900/50 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 ${open && mobile ? "hidden" : ""}`}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -362,7 +388,7 @@ export function ChatbotWidget() {
                 <Bot size={17} className="text-white" />
               </div>
               <div className="flex flex-col flex-1 min-w-0">
-                <span className="text-white text-sm font-semibold leading-tight">Rychlo AI</span>
+                <span className="text-white text-sm font-semibold leading-tight">Akihlee AI</span>
                 <span className="text-green-400 text-xs leading-tight flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
                   Online
@@ -417,7 +443,7 @@ export function ChatbotWidget() {
                 <Bot size={17} className="text-white" />
               </div>
               <div className="flex flex-col flex-1 min-w-0">
-                <span className="text-white text-sm font-semibold leading-tight">Rychlo AI</span>
+                <span className="text-white text-sm font-semibold leading-tight">Akihlee AI</span>
                 <span className="text-green-400 text-xs leading-tight flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
                   Online

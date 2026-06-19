@@ -7,6 +7,7 @@ import { submitConsultationRequest } from "@/lib/actions/consultation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export function ConsultationForm() {
   const [state, formAction, isPending] = useActionState(
@@ -72,6 +73,22 @@ export function ConsultationForm() {
             </p>
           )}
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="message">Tell us about your problem</Label>
+        <Textarea
+          id="message"
+          name="message"
+          placeholder="Briefly describe what's slowing your team down or what you'd like to automate..."
+          rows={4}
+          maxLength={2000}
+        />
+        {state.fieldErrors?.message?.[0] && (
+          <p role="alert" className="text-sm text-red-400">
+            {state.fieldErrors.message[0]}
+          </p>
+        )}
       </div>
 
       <Button type="submit" size="lg" className="w-full" disabled={isPending}>
