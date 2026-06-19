@@ -25,7 +25,7 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
-      <div className="container flex items-center justify-between h-20">
+      <div className="container flex items-center justify-between h-28">
         {/* Logo */}
         <button
           onClick={() => handleScroll("#home")}
@@ -34,13 +34,10 @@ export function Navigation() {
           <Image
             src="/logo.png"
             alt="Akihlee"
-            width={50}
-            height={50}
+            width={140}
+            height={140}
             className="rounded-md object-contain"
           />
-          <span className="text-white font-semibold text-xl leading-tight">
-            Akihlee
-          </span>
         </button>
 
         {/* Desktop nav */}

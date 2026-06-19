@@ -25,8 +25,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Image
               src="/logo.png"
               alt="Akihlee"
-              width={48}
-              height={48}
+              width={96}
+              height={96}
               className="rounded-md object-cover"
             />
             <div>

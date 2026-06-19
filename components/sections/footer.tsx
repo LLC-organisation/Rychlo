@@ -23,8 +23,8 @@ export function Footer() {
             <Image
               src="/logo.png"
               alt="Akihlee"
-              width={44}
-              height={44}
+              width={100}
+              height={100}
               className="rounded-md object-cover"
             />
             <span className="text-white font-semibold">Akihlee</span>
