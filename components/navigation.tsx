@@ -32,7 +32,7 @@ export function Navigation() {
           className="flex items-center gap-1.5"
         >
           <Image
-            src="/logo.jpeg"
+            src="/logo.png"
             alt="Akihlee"
             width={50}
             height={50}

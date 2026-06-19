@@ -13,7 +13,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "Akihlee",
   url: siteUrl,
-  logo: `${siteUrl}/logo.jpeg`,
+  logo: `${siteUrl}/logo.png`,
   description:
     "Akihlee delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
   foundingDate: "2024",
@@ -37,7 +37,7 @@ export const metadata = {
     template: "%s | Akihlee",
   },
   icons: {
-    icon: "/logo.jpeg",
+    icon: "/logo.png",
   },
   description:
     "Akihlee delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",

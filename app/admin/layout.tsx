@@ -23,7 +23,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="p-6 border-b border-zinc-800">
           <div className="flex items-center gap-2">
             <Image
-              src="/logo.jpeg"
+              src="/logo.png"
               alt="Akihlee"
               width={48}
               height={48}
