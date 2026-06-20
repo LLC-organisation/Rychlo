@@ -1,5 +1,6 @@
 // @ts-ignore: CSS module side-effect import declaration
 import "./globals.css";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { ChatbotWidget } from "@/components/chatbot-widget";
@@ -7,6 +8,7 @@ import { ChatbotWidget } from "@/components/chatbot-widget";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://rychlo.vercel.app";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -93,10 +95,28 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
+
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         <ChatbotWidget />
         <Toaster theme="dark" position="bottom-right" richColors />
+
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
