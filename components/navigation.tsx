@@ -25,20 +25,20 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
-      <div className="container flex items-center justify-between h-20">
+      <div className="container flex items-center justify-between h-28">
         {/* Logo */}
-        <div className="flex items-center gap-1.5">
+        <button
+          onClick={() => handleScroll("#home")}
+          className="flex items-center gap-1.5"
+        >
           <Image
-            src="/logo.jpeg"
-            alt="Rychlo"
-            width={50}
-            height={50}
+            src="/logo.png"
+            alt="Akihlee"
+            width={140}
+            height={140}
             className="rounded-md object-contain"
           />
-          <span className="text-white font-semibold text-xl leading-tight">
-            Rychlo
-          </span>
-        </div>
+        </button>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6">

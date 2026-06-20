@@ -7,17 +7,17 @@ import { ChatbotWidget } from "@/components/chatbot-widget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://rychlo.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://akihlee.com";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Rychlo Technology Solutions",
+  name: "Akihlee",
   url: siteUrl,
-  logo: `${siteUrl}/logo.jpeg`,
+  logo: `${siteUrl}/logo.png`,
   description:
-    "Rychlo Technology Solutions delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
+    "Akihlee delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
   foundingDate: "2024",
   founders: [
     { "@type": "Person", name: "Victor Kamiri" },
@@ -35,30 +35,30 @@ const jsonLd = {
 
 export const metadata = {
   title: {
-    default: "Rychlo Technology Solutions",
-    template: "%s | Rychlo",
+    default: "Akihlee",
+    template: "%s | Akihlee",
   },
   icons: {
-    icon: "/logo.jpeg",
+    icon: "/logo.png",
   },
   description:
-    "Rychlo Technology Solutions delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
+    "Akihlee delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Rychlo Technology Solutions | AI & Automation Experts",
+    title: "Akihlee | AI & Automation Experts",
     description:
       "AI automation, cybersecurity, and custom software for growing businesses.",
     url: siteUrl,
-    siteName: "Rychlo Technology Solutions",
+    siteName: "Akihlee",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rychlo Technology Solutions | AI & Automation Experts",
+    title: "Akihlee | AI & Automation Experts",
     description: "Build. Automate. Scale.",
   },
   keywords: [
@@ -69,7 +69,7 @@ export const metadata = {
     "Digital Transformation",
     "Workflow Automation",
     "Custom Software",
-    "Rychlo Technology",
+    "Akihlee Technology",
     "East Africa Tech",
   ],
   robots: {

@@ -10,6 +10,72 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   streaming?: boolean;
+  type?: "form";
+}
+
+function ChatForm({ onDone }: { onDone: () => void }) {
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setBusy(true);
+    setErr("");
+    const fd = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/api/chat/form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: fd.get("fullName"),
+          companyName: fd.get("companyName"),
+          email: fd.get("email"),
+          phone: fd.get("phone"),
+          message: fd.get("message") || undefined,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const first = Object.values(data.error ?? {})[0];
+        throw new Error(Array.isArray(first) ? first[0] : "Invalid fields");
+      }
+      onDone();
+    } catch (e: unknown) {
+      setErr(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const inputCls =
+    "w-full bg-zinc-700 text-white text-sm rounded-lg px-3 py-2 placeholder:text-zinc-400 outline-none focus:ring-1 focus:ring-blue-500";
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full pt-1">
+      <p className="text-white/60 text-xs mb-1">
+        Fill in your details and we'll be in touch within 1 business day.
+      </p>
+      <input name="fullName" required placeholder="Full name *" className={inputCls} />
+      <input name="companyName" required placeholder="Company name *" className={inputCls} />
+      <input name="email" type="email" required placeholder="Email address *" className={inputCls} />
+      <input name="phone" required placeholder="Phone number *" className={inputCls} />
+      <textarea
+        name="message"
+        placeholder="Briefly describe your problem (optional)"
+        rows={3}
+        maxLength={2000}
+        className={`${inputCls} resize-none`}
+      />
+      {err && <p className="text-red-400 text-xs">{err}</p>}
+      <button
+        type="submit"
+        disabled={busy}
+        className="bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-sm font-semibold rounded-lg px-4 py-2.5 transition-colors mt-1"
+      >
+        {busy ? "Sending…" : "Book Free Consultation"}
+      </button>
+    </form>
+  );
 }
 
 const QUICK_REPLIES = [
@@ -26,13 +92,25 @@ const INIT_W = 360;
 const clamp = (v: number, lo: number, hi: number) =>
   Math.min(Math.max(v, lo), hi);
 
+const CONTACT_TRIGGERS = [
+  "book a", "free call", "free strategy", "contact us", "reach out",
+  "get in touch", "schedule", "consultation", "contact form", "email us",
+  "scroll to", "fill out", "fill in",
+];
+
+function shouldNotify(text: string) {
+  const lower = text.toLowerCase();
+  return CONTACT_TRIGGERS.some((t) => lower.includes(t));
+}
+
 export function ChatbotWidget() {
   const [open, setOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
       content:
-        "Hi! I'm Rychlo AI. Ask me anything about our services, how we work, or how we can help your business automate and scale.",
+        "Hi! I'm Akihlee AI. Ask me anything about our services, how we work, or how we can help your business automate and scale.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -47,6 +125,35 @@ export function ChatbotWidget() {
   const abortRef = useRef<AbortController | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const notifiedRef = useRef(false);
+  const hasContactSuggestionRef = useRef(false);
+  const messagesRef = useRef(messages);
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
+
+  const mdComponents = {
+    a: ({ href, children }: React.ComponentPropsWithoutRef<"a">) => {
+      if (href?.startsWith("#")) {
+        return (
+          <button
+            onClick={() => {
+              if (mobile) { setOpen(false); }
+              setTimeout(() => {
+                document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+              }, mobile ? 300 : 0);
+            }}
+            className="text-blue-400 underline hover:text-blue-300 transition-colors"
+          >
+            {children}
+          </button>
+        );
+      }
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-400 underline hover:text-blue-300 transition-colors">
+          {children}
+        </a>
+      );
+    },
+  };
 
   // ── mobile detection ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -196,13 +303,20 @@ export function ChatbotWidget() {
         }
       }
 
-      setMessages((prev) => [
-        ...prev.slice(0, -1),
-        {
-          role: "assistant",
-          content: acc || "Sorry, I didn't get a response. Please try again.",
-        },
-      ]);
+      const hasForm = acc.includes("[SHOW_FORM]");
+      const finalContent = (hasForm ? acc.replace(/\[SHOW_FORM\]/gi, "") : acc).trim()
+        || "Sorry, I didn't get a response. Please try again.";
+
+      const nextMessages: Message[] = [
+        ...history,
+        { role: "assistant", content: finalContent },
+        ...(hasForm ? [{ role: "assistant" as const, content: "", type: "form" as const }] : []),
+      ];
+      setMessages(nextMessages);
+
+      if (hasForm || shouldNotify(finalContent)) {
+        hasContactSuggestionRef.current = true;
+      }
     } catch (err: unknown) {
       if ((err as Error).name === "AbortError") return;
       setMessages((prev) => [
@@ -225,6 +339,14 @@ export function ChatbotWidget() {
   function handleClose() {
     abortRef.current?.abort();
     setOpen(false);
+    if (hasContactSuggestionRef.current && !notifiedRef.current) {
+      notifiedRef.current = true;
+      fetch("/api/chat/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: messagesRef.current }),
+      }).catch(() => {});
+    }
   }
 
   // ── shared UI ─────────────────────────────────────────────────────────────
@@ -236,26 +358,39 @@ export function ChatbotWidget() {
           key={i}
           className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
         >
-          <div
-            className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
-              msg.role === "user"
-                ? "bg-blue-600 text-white rounded-br-sm"
-                : "bg-zinc-800 text-white/90 rounded-bl-sm"
-            }`}
-          >
-            {msg.role === "assistant" ? (
-              <div className="prose prose-invert prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0 prose-headings:my-1">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {msg.content || (msg.streaming ? "▍" : "")}
-                </ReactMarkdown>
-                {msg.streaming && msg.content && (
-                  <span className="inline-block w-0.5 h-3.5 bg-white/70 animate-pulse ml-0.5 align-middle" />
-                )}
-              </div>
-            ) : (
-              msg.content
-            )}
-          </div>
+          {msg.type === "form" ? (
+            <div className="max-w-[92%] w-full rounded-2xl px-3.5 py-3 text-sm bg-zinc-800 text-white/90 rounded-bl-sm">
+              {formSubmitted ? (
+                <div className="flex flex-col gap-1 py-2">
+                  <p className="text-green-400 font-semibold">Request sent!</p>
+                  <p className="text-white/60 text-xs">We'll get back to you within 1 business day.</p>
+                </div>
+              ) : (
+                <ChatForm onDone={() => setFormSubmitted(true)} />
+              )}
+            </div>
+          ) : (
+            <div
+              className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                msg.role === "user"
+                  ? "bg-blue-600 text-white rounded-br-sm"
+                  : "bg-zinc-800 text-white/90 rounded-bl-sm"
+              }`}
+            >
+              {msg.role === "assistant" ? (
+                <div className="prose prose-invert prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0 prose-headings:my-1">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+                    {msg.content || (msg.streaming ? "▍" : "")}
+                  </ReactMarkdown>
+                  {msg.streaming && msg.content && (
+                    <span className="inline-block w-0.5 h-3.5 bg-white/70 animate-pulse ml-0.5 align-middle" />
+                  )}
+                </div>
+              ) : (
+                msg.content
+              )}
+            </div>
+          )}
         </div>
       ))}
 
@@ -311,7 +446,7 @@ export function ChatbotWidget() {
       {/* ── floating toggle button ── */}
       <button
         onClick={() => (open ? handleClose() : setOpen(true))}
-        aria-label={open ? "Close chat" : "Open Rychlo AI chat"}
+        aria-label={open ? "Close chat" : "Open Akihlee AI chat"}
         className={`fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-900/50 flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 ${open && mobile ? "hidden" : ""}`}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -362,7 +497,7 @@ export function ChatbotWidget() {
                 <Bot size={17} className="text-white" />
               </div>
               <div className="flex flex-col flex-1 min-w-0">
-                <span className="text-white text-sm font-semibold leading-tight">Rychlo AI</span>
+                <span className="text-white text-sm font-semibold leading-tight">Akihlee AI</span>
                 <span className="text-green-400 text-xs leading-tight flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
                   Online
@@ -417,7 +552,7 @@ export function ChatbotWidget() {
                 <Bot size={17} className="text-white" />
               </div>
               <div className="flex flex-col flex-1 min-w-0">
-                <span className="text-white text-sm font-semibold leading-tight">Rychlo AI</span>
+                <span className="text-white text-sm font-semibold leading-tight">Akihlee AI</span>
                 <span className="text-green-400 text-xs leading-tight flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
                   Online

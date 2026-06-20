@@ -14,6 +14,7 @@ model ConsultationRequest {
   companyName String
   email       String
   phone       String
+  message     String?
   createdAt   DateTime @default(now())
 
   @@map("consultation_requests")

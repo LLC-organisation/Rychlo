@@ -8,8 +8,6 @@ import {
   Handshake,
   Lock,
   ArrowRight,
-  Globe,
-  ExternalLink,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -113,23 +111,19 @@ const team: Omit<TeamCardProps, "index">[] = [
     name: "Victor Kamiri",
     role: "Co-Founder · Mobile & Frontend UI/UX Engineer & Marketing Lead",
     initials: "VK",
-    bio: "Victor leads design and marketing at Rychlo. He builds the interfaces our clients interact with every day and makes sure complex technology feels straightforward to use.",
+    bio: "Victor leads design and marketing at Akihlee. He builds the interfaces our clients interact with every day and makes sure complex technology feels straightforward to use.",
   },
   {
     name: "Lee Haney",
     role: "Co-Founder · Tech & AI Engineering Lead",
     initials: "LH",
-    bio: "Lee drives the technical direction at Rychlo. He leads our engineering work, designs the Software and AI systems we deploy, and makes sure everything we ship is reliable and well-built.",
+    bio: "Lee drives the technical direction at Akihlee. He leads our engineering work, designs the Software and AI systems we deploy, and makes sure everything we ship is reliable and well-built.",
   },
   {
     name: "George Akai",
     role: "Co-Founder · Cybersecurity Lead & AI Engineer",
     initials: "GA",
     bio: "George keeps our systems, and our clients' systems, secure. He leads cybersecurity across all our projects and designs the architecture that handles sensitive data responsibly.",
-    links: [
-      { href: "https://about-george-akai.vercel.app", label: "Personal Site", icon: Globe },
-      { href: "https://linkedin.com/in/georgeakai", label: "LinkedIn", icon: ExternalLink },
-    ],
   },
 ];
 
@@ -232,10 +226,10 @@ export function AboutSection() {
             <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Story</h3>
           </div>
           <p className="text-white/80 leading-relaxed text-base max-w-3xl">
-            Rychlo came out of a straightforward observation: most businesses spend too much time on work
+            Akihlee came out of a straightforward observation: most businesses spend too much time on work
             that technology could handle. We saw teams doing the same manual tasks day after day:
             data entry, chasing approvals, pulling reports. We knew there was a better way.
-            We built Rychlo to offer practical, well-engineered solutions: automation that actually runs,
+            We built Akihlee to offer practical, well-engineered solutions: automation that actually runs,
             security that holds up, and a team that stays accountable long after the project is delivered.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">

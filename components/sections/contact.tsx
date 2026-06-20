@@ -1,7 +1,5 @@
 import {
   Mail,
-  MessageCircle,
-  Send,
   Linkedin,
   Instagram,
   Twitter,
@@ -47,16 +45,6 @@ export async function ContactSection() {
       href: `mailto:${settings.email}`,
       icon: <Mail size={20} />,
       label: "Email Us",
-    },
-    settings?.whatsapp && {
-      href: settings.whatsapp,
-      icon: <MessageCircle size={20} />,
-      label: "WhatsApp",
-    },
-    settings?.telegram && {
-      href: settings.telegram,
-      icon: <Send size={20} />,
-      label: "Telegram",
     },
     settings?.linkedin && {
       href: settings.linkedin,

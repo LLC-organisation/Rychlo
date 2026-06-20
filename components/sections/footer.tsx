@@ -21,13 +21,13 @@ export function Footer() {
         <div className="flex flex-col items-center md:items-start gap-1">
           <div className="flex items-center gap-2">
             <Image
-              src="/logo.jpeg"
-              alt="Rychlo Technology Solutions"
-              width={44}
-              height={44}
+              src="/logo.png"
+              alt="Akihlee"
+              width={100}
+              height={100}
               className="rounded-md object-cover"
             />
-            <span className="text-white font-semibold">Rychlo Technology Solutions</span>
+            <span className="text-white font-semibold">Akihlee</span>
           </div>
           <span className="text-blue-400 text-xs font-medium ml-9">Build. Automate. Scale.</span>
         </div>
@@ -45,7 +45,7 @@ export function Footer() {
         </nav>
 
         <p className="text-white/40 text-xs">
-          &copy; 2025 Rychlo Technology Solutions. All rights reserved.
+          &copy; 2026 Akihlee. All rights reserved.
         </p>
       </div>
     </footer>
