@@ -25,7 +25,7 @@ const jsonLd = {
     { "@type": "Person", name: "Lee Haney" },
     { "@type": "Person", name: "George Akai" },
   ],
-  sameAs: ["https://linkedin.com/in/george-akai"],
+  sameAs: ["https://www.linkedin.com/company/akihlee/"],
   serviceType: [
     "Workflow Automation",
     "AI Systems",

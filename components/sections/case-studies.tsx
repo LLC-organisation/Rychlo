@@ -40,7 +40,7 @@ export async function CaseStudiesSection() {
                 <h4 className="text-blue-400 text-xs uppercase tracking-widest mb-2 font-semibold">
                   The Challenge
                 </h4>
-                <p className="text-white/80 text-sm leading-relaxed line-clamp-4">
+                <p className="text-white/80 text-sm leading-relaxed">
                   {study.clientProblem}
                 </p>
               </div>
@@ -49,7 +49,7 @@ export async function CaseStudiesSection() {
                 <h4 className="text-blue-400 text-xs uppercase tracking-widest mb-2 font-semibold">
                   Our Solution
                 </h4>
-                <p className="text-white/80 text-sm leading-relaxed line-clamp-4">
+                <p className="text-white/80 text-sm leading-relaxed">
                   {study.solution}
                 </p>
               </div>
