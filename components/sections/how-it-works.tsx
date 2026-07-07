@@ -13,7 +13,7 @@ interface Step {
 const steps: Step[] = [
   {
     number: 1,
-    title: "Tell us where money is leaking",
+    title: "Tell us your pain points",
     description: "We start with a conversation about your finance operations: the manual paperwork, the reporting delays, and the places where costs and cash are hard to see.",
   },
   {
