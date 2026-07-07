@@ -71,10 +71,10 @@ export function AboutSection() {
               <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Mission</h3>
             </div>
             <p className="text-white/80 leading-relaxed">
-              Our work is simple: take the tasks that eat up your team's time and
-              build systems to handle them automatically. The goal isn't just
-              efficiency. It's giving people space to do the kind of work they
-              actually want to do.
+              Our mission is simple: give small and mid-sized businesses the same
+              financial control that big companies have, without the big price tag.
+              We automate the finance work that drains your team and make every
+              shilling visible, so you can decide with confidence and stop losing money.
             </p>
           </motion.div>
 
@@ -90,9 +90,9 @@ export function AboutSection() {
               <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Vision</h3>
             </div>
             <p className="text-white/80 leading-relaxed">
-              To be the go-to technology team for growing businesses in East Africa
+              To be the finance operating system for growing businesses in East Africa
               and beyond. Not a vendor you call once, but a partner who understands
-              your operations and helps you stay ahead of what's coming.
+              your numbers and helps you turn them into smarter decisions every day.
             </p>
           </motion.div>
         </div>
@@ -131,11 +131,12 @@ export function AboutSection() {
             <h3 className="text-blue-400 font-semibold text-lg uppercase tracking-wide">Our Story</h3>
           </div>
           <p className="text-white/80 leading-relaxed text-base max-w-3xl">
-            Akihlee came out of a straightforward observation: most businesses spend too much time on work
-            that technology could handle. We saw teams doing the same manual tasks day after day:
-            data entry, chasing approvals, pulling reports. We knew there was a better way.
-            We built Akihlee to offer practical, well-engineered solutions: automation that actually runs,
-            security that holds up, and a team that stays accountable long after the project is delivered.
+            Akihlee came out of a straightforward observation: SMEs are stuck between messy spreadsheets
+            and enterprise finance software that costs a fortune. We watched teams key in the same
+            numbers twice, chase paper approvals, and close the month with no real idea where money was going.
+            We built Akihlee to give those businesses an affordable ERP alternative: automation that actually runs,
+            financial visibility they can trust, AI agents that help managers decide, and a team that stays
+            accountable long after go-live.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
             <Button size="lg" onClick={handleScroll} className="gap-2">

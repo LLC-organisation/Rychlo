@@ -79,8 +79,8 @@ function ChatForm({ onDone }: { onDone: () => void }) {
 }
 
 const QUICK_REPLIES = [
-  "What services do you offer?",
-  "How does the process work?",
+  "How can you help my finances?",
+  "Is this cheaper than a full ERP?",
   "How much does it cost?",
 ];
 
@@ -110,7 +110,7 @@ export function ChatbotWidget() {
     {
       role: "assistant",
       content:
-        "Hi! I'm Akihlee AI. Ask me anything about our services, how we work, or how we can help your business automate and scale.",
+        "Hi! I'm Akihlee AI. Ask me anything about how we automate finance, give you an affordable ERP, and help you see where your money goes.",
     },
   ]);
   const [input, setInput] = useState("");

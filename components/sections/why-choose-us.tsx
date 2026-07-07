@@ -3,9 +3,9 @@
 import { motion } from "motion/react";
 import {
   DollarSign,
-  TrendingUp,
+  Eye,
   CheckCircle,
-  Clock,
+  TrendingDown,
   Settings,
   HeartHandshake,
   ArrowRight,
@@ -45,33 +45,33 @@ function ReasonCard({ icon: Icon, title, description, index }: ReasonCardProps) 
 const reasons: Omit<ReasonCardProps, "index">[] = [
   {
     icon: DollarSign,
-    title: "Lower Operational Costs",
-    description: "Replace manual, time-intensive tasks with automated systems and keep your output high without expanding your team.",
+    title: "Affordable ERP for SMEs",
+    description: "Get the finance capabilities big companies pay thousands for, at a price that makes sense for a growing business.",
   },
   {
-    icon: TrendingUp,
-    title: "Your Team Works on Better Things",
-    description: "When routine work is handled automatically, your people can focus on the work they're actually good at.",
+    icon: TrendingDown,
+    title: "Reduce Losses",
+    description: "When you can see where money is being lost, you can stop it. Our clients catch leaks, waste, and errors they never knew existed.",
+  },
+  {
+    icon: Eye,
+    title: "Full Financial Transparency",
+    description: "One source of truth for every shilling. Real-time visibility across departments so nothing hides in a spreadsheet.",
   },
   {
     icon: CheckCircle,
     title: "Fewer Costly Mistakes",
-    description: "Automated processes are consistent. Manual ones aren't. We help move your critical work into systems that don't have bad days.",
-  },
-  {
-    icon: Clock,
-    title: "Faster Turnaround",
-    description: "Tasks that used to take hours run in minutes, without anyone sitting in front of a screen watching them.",
+    description: "Automated tax, accounting, and reconciliation are consistent. No missed filings, no typos, no penalties from manual work.",
   },
   {
     icon: Settings,
     title: "Built Around Your Business",
-    description: "We don't sell templates. Every system we build is designed around how your business actually works.",
+    description: "We don't sell templates. Every finance system we configure is designed around how your business actually operates.",
   },
   {
     icon: HeartHandshake,
-    title: "We Stay After the Work Is Done",
-    description: "We don't disappear after launch. If something needs tuning or your process changes, we're a phone call away.",
+    title: "We Stay After Go-Live",
+    description: "We don't disappear after launch. As your reporting needs or workflows change, we're a phone call away.",
   },
 ];
 
@@ -93,7 +93,7 @@ export function WhyChooseUsSection() {
           <h2 className="text-white">Why Clients Work With Us</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            We're not a software vendor. We're a team you can call when something breaks, needs improving, or isn't quite right.
+            We're not just software. We're a finance-focused team you can call when a report needs improving, a workflow changes, or the numbers don't add up.
           </p>
         </motion.div>
 

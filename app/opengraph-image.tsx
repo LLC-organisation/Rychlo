@@ -58,7 +58,7 @@ export default function OgImage() {
             }}
           />
           <span style={{ color: "#93c5fd", fontSize: 18, fontWeight: 500 }}>
-            Build. Automate. Scale.
+            Finance Automation for SMEs
           </span>
         </div>
 
@@ -85,7 +85,7 @@ export default function OgImage() {
             lineHeight: 1.4,
           }}
         >
-          AI Automation · Cybersecurity · Custom Software
+          Affordable ERP · Tax & Accounting · AI Finance Agents
         </div>
 
         {/* Bottom URL */}

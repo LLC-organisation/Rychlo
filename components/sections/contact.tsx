@@ -75,7 +75,7 @@ export async function ContactSection() {
           <div className="text-center mb-16">
             <h2 className="text-white mb-4">Let's Talk</h2>
             <p className="text-white/70 text-lg">
-              Tell us what's taking up too much of your team's time. We'll figure out together whether we can help.
+              Tell us where your finances are hard to see or slow to manage. We'll figure out together whether we can help.
             </p>
           </div>
 

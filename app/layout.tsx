@@ -18,19 +18,15 @@ const jsonLd = {
   url: siteUrl,
   logo: `${siteUrl}/logo.png`,
   description:
-    "Akihlee delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
+    "Akihlee gives SMEs an affordable ERP alternative: automated tax, accounting, and paperless workflows, real-time financial visibility, and AI agents that turn finance data into decisions that reduce losses.",
   foundingDate: "2024",
-  founders: [
-    { "@type": "Person", name: "Victor Kamiri" },
-    { "@type": "Person", name: "Lee Haney" },
-    { "@type": "Person", name: "George Akai" },
-  ],
   sameAs: ["https://www.linkedin.com/company/akihlee/"],
   serviceType: [
-    "Workflow Automation",
-    "AI Systems",
-    "Cybersecurity",
-    "Custom Software Development",
+    "Finance Automation",
+    "Tax Automation",
+    "Accounting Automation",
+    "ERP for SMEs",
+    "Financial Analytics",
   ],
 };
 
@@ -43,15 +39,15 @@ export const metadata = {
     icon: "/logo.png",
   },
   description:
-    "Akihlee delivers AI-powered automation, cybersecurity, and custom software that helps businesses eliminate manual work and scale with confidence.",
+    "Akihlee gives SMEs an affordable ERP alternative: automated tax, accounting, and paperless workflows, real-time financial visibility, and AI agents that turn finance data into decisions that reduce losses.",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Akihlee | AI & Automation Experts",
+    title: "Akihlee | Finance Automation & Affordable ERP for SMEs",
     description:
-      "AI automation, cybersecurity, and custom software for growing businesses.",
+      "Automated tax, accounting, and paperless workflows with real-time financial visibility and AI finance agents for growing businesses.",
     url: siteUrl,
     siteName: "Akihlee",
     type: "website",
@@ -59,17 +55,18 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Akihlee | AI & Automation Experts",
-    description: "Build. Automate. Scale.",
+    title: "Akihlee | Finance Automation & Affordable ERP for SMEs",
+    description: "Automate finance. See where the money goes.",
   },
   keywords: [
-    "AI Automation",
-    "Business Automation",
-    "Cybersecurity",
-    "AI Consulting",
-    "Digital Transformation",
-    "Workflow Automation",
-    "Custom Software",
+    "Finance Automation",
+    "Tax Automation",
+    "Accounting Automation",
+    "Affordable ERP",
+    "ERP for SMEs",
+    "Financial Visibility",
+    "Tender Workflows",
+    "AI Finance Agents",
     "Akihlee Technology",
     "East Africa Tech",
   ],

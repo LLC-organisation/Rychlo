@@ -14,7 +14,7 @@ vi.mock("@/lib/email", () => ({
   sendAutomationRequestNotification: vi.fn().mockResolvedValue(undefined),
 }));
 
-const validPayload = {
+const validFields = {
   fullName: "John Doe",
   companyName: "Logistics Plus",
   email: "john@logisticsplus.com",
@@ -30,44 +30,52 @@ const validPayload = {
   estimatedMonthlyVolume: "~500 shipments/month",
 };
 
+function formDataFrom(fields: Record<string, string>): FormData {
+  const fd = new FormData();
+  for (const [key, value] of Object.entries(fields)) fd.append(key, value);
+  return fd;
+}
+
 describe("submitAutomationRequest", () => {
   beforeEach(() => vi.clearAllMocks());
 
   it("returns success for a valid payload", async () => {
-    const result = await submitAutomationRequest(validPayload);
+    const result = await submitAutomationRequest({}, formDataFrom(validFields));
     expect(result.success).toBe(true);
   });
 
   it("writes to the database when payload is valid", async () => {
     const { default: prisma } = await import("@/lib/prisma");
-    await submitAutomationRequest(validPayload);
+    await submitAutomationRequest({}, formDataFrom(validFields));
     expect(prisma.automationRequest.create).toHaveBeenCalledOnce();
     expect(prisma.automationRequest.create).toHaveBeenCalledWith({
-      data: expect.objectContaining({ email: validPayload.email }),
+      data: expect.objectContaining({ email: validFields.email }),
     });
   });
 
   it("sends an email notification when payload is valid", async () => {
     const { sendAutomationRequestNotification } = await import("@/lib/email");
-    await submitAutomationRequest(validPayload);
+    await submitAutomationRequest({}, formDataFrom(validFields));
     expect(sendAutomationRequestNotification).toHaveBeenCalledOnce();
   });
 
   it("returns fieldErrors for an invalid email and does not write to DB", async () => {
     const { default: prisma } = await import("@/lib/prisma");
-    const result = await submitAutomationRequest({ ...validPayload, email: "bad-email" });
-    expect(result.success).toBe(false);
-    if (!result.success && "fieldErrors" in result) {
-      expect(result.fieldErrors?.email).toBeDefined();
-    }
+    const result = await submitAutomationRequest(
+      {},
+      formDataFrom({ ...validFields, email: "bad-email" })
+    );
+    expect(result.success).toBeFalsy();
+    expect(result.fieldErrors?.email).toBeDefined();
     expect(prisma.automationRequest.create).not.toHaveBeenCalled();
   });
 
   it("returns fieldErrors when currentProcess is too short", async () => {
-    const result = await submitAutomationRequest({ ...validPayload, currentProcess: "Short" });
-    expect(result.success).toBe(false);
-    if (!result.success && "fieldErrors" in result) {
-      expect(result.fieldErrors?.currentProcess).toBeDefined();
-    }
+    const result = await submitAutomationRequest(
+      {},
+      formDataFrom({ ...validFields, currentProcess: "Short" })
+    );
+    expect(result.success).toBeFalsy();
+    expect(result.fieldErrors?.currentProcess).toBeDefined();
   });
 });

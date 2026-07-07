@@ -6,15 +6,18 @@ const valid = {
   companyName: "Acme Corp",
   email: "jane@acme.com",
   phone: "+1 555 0100",
-  industry: "Healthcare",
-  companySize: "11-50",
-  businessChallenge: "We spend 20 hours per week on manual data entry into our CRM.",
-  desiredOutcome: "Automate data entry so the team can focus on client relationships.",
+  message: "We spend 20 hours per week on manual data entry into our accounting system.",
 };
 
 describe("consultationSchema", () => {
   it("accepts a fully valid consultation request", () => {
     const result = consultationSchema.safeParse(valid);
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts a request without the optional message", () => {
+    const { message: _message, ...withoutMessage } = valid;
+    const result = consultationSchema.safeParse(withoutMessage);
     expect(result.success).toBe(true);
   });
 
@@ -27,9 +30,6 @@ describe("consultationSchema", () => {
       expect(errors.companyName).toBeDefined();
       expect(errors.email).toBeDefined();
       expect(errors.phone).toBeDefined();
-      expect(errors.industry).toBeDefined();
-      expect(errors.businessChallenge).toBeDefined();
-      expect(errors.desiredOutcome).toBeDefined();
     }
   });
 
@@ -55,32 +55,22 @@ describe("consultationSchema", () => {
     }
   });
 
-  it("rejects an invalid companySize value", () => {
-    const result = consultationSchema.safeParse({ ...valid, companySize: "not-a-size" });
+  it("rejects a message longer than 2000 characters", () => {
+    const result = consultationSchema.safeParse({ ...valid, message: "x".repeat(2001) });
     expect(result.success).toBe(false);
-  });
-
-  it("accepts all valid companySize enum values", () => {
-    const sizes = ["1-10", "11-50", "51-200", "200+"] as const;
-    for (const size of sizes) {
-      const result = consultationSchema.safeParse({ ...valid, companySize: size });
-      expect(result.success).toBe(true);
+    if (!result.success) {
+      expect(result.error.flatten().fieldErrors.message).toBeDefined();
     }
   });
 
-  it("rejects businessChallenge shorter than 10 characters", () => {
-    const result = consultationSchema.safeParse({ ...valid, businessChallenge: "Too short" });
-    expect(result.success).toBe(false);
-    if (!result.success) {
-      expect(result.error.flatten().fieldErrors.businessChallenge).toBeDefined();
-    }
-  });
-
-  it("rejects desiredOutcome shorter than 10 characters", () => {
-    const result = consultationSchema.safeParse({ ...valid, desiredOutcome: "Short" });
-    expect(result.success).toBe(false);
-    if (!result.success) {
-      expect(result.error.flatten().fieldErrors.desiredOutcome).toBeDefined();
+  it("strips HTML tags from the message", () => {
+    const result = consultationSchema.safeParse({
+      ...valid,
+      message: "<script>alert(1)</script>Please automate our invoicing.",
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.message).toBe("alert(1)Please automate our invoicing.");
     }
   });
 
@@ -88,7 +78,7 @@ describe("consultationSchema", () => {
     const result = consultationSchema.safeParse(valid);
     if (result.success) {
       expect(result.data.email).toBe(valid.email);
-      expect(result.data.companySize).toBe("11-50");
+      expect(result.data.fullName).toBe(valid.fullName);
     }
   });
 });

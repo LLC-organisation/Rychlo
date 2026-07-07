@@ -1,12 +1,12 @@
-# Rychlo Technology Solutions — Landing Page
+# Akihlee — Landing Page
 
-Marketing and lead-capture site for Rychlo Technology Solutions. Built with Next.js 15 App Router, Prisma, and Resend.
+Marketing and lead-capture site for Akihlee, a finance automation company that gives SMEs an affordable ERP alternative: automated tax, accounting, and paperless workflows, real-time financial visibility, and custom AI finance agents. Built with Next.js 15 App Router, Prisma, and Resend.
 
 ## What it does
 
-- Public landing page (hero, services, how-it-works, about, contact)
+- Public landing page (hero, finance services, how-it-works, about, contact)
 - Consultation and automation request forms that write to Postgres and email the team via Resend
-- Published case studies section pulled from the database
+- An Akihlee AI chatbot (OpenRouter-backed) that answers finance/ERP questions and captures leads
 - Password-protected admin dashboard to manage consultations, automation requests, case studies, and site settings
 
 ## Tech stack
@@ -51,6 +51,7 @@ cp .env.example .env.local
 | `ADMIN_PASSWORD` | Password for the `/admin` dashboard |
 | `SESSION_SECRET` | Random 32-char string used to sign JWT sessions |
 | `NEXT_PUBLIC_APP_URL` | Public URL of the site (used for Open Graph) |
+| `OPENROUTER_API_KEY` | API key from [openrouter.ai](https://openrouter.ai) that powers the Akihlee AI chatbot |
 
 ### 3. Set up the database
 

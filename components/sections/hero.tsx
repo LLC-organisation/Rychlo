@@ -41,7 +41,7 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
         >
           <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-          <span className="text-blue-300 text-sm font-medium">Build. Automate. Scale.</span>
+          <span className="text-blue-300 text-sm font-medium">Finance Automation for SMEs</span>
         </motion.div>
 
         {/* Headline */}
@@ -51,9 +51,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
-          <span className="text-white">We Build the Systems</span>{" "}
+          <span className="text-white">Automate Your Finances.</span>{" "}
           <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            That Free Your Team.
+            See Where the Money Goes.
           </span>
         </motion.h1>
 
@@ -64,8 +64,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
-          Akihlee builds automation tools, AI systems, and security solutions
-          for businesses that want to do more without adding more staff.
+          Akihlee gives growing businesses an affordable ERP alternative:
+          automated tax, accounting, and paperless workflows, plus AI agents that
+          turn your financial data into decisions that cut losses.
         </motion.p>
 
         {/* Buttons */}
@@ -97,7 +98,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.55 }}
         >
-          {["Workflow Automation", "AI Assistants", "Cybersecurity", "System Integrations"].map((tag) => (
+          {["Tax Automation", "Accounting Automation", "Financial Visibility", "AI Finance Agents"].map((tag) => (
             <span key={tag} className="text-white/40 text-sm flex items-center gap-1.5">
               <span className="w-1 h-1 bg-blue-500 rounded-full" />
               {tag}

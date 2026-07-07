@@ -3,11 +3,11 @@
 import { motion } from "motion/react";
 import {
   FileText,
-  ScanLine,
+  Calculator,
   Workflow,
   Bot,
-  Plug,
-  BarChart3,
+  LayoutDashboard,
+  Boxes,
   CheckCircle2,
   ArrowRight,
   type LucideIcon,
@@ -69,38 +69,38 @@ const services: Omit<ServiceCardProps, "index">[] = [
   {
     icon: FileText,
     title: "Tax Automation",
-    description: "We build systems that handle tax calculations, filing, and compliance tracking automatically, so your team isn't scrambling when deadlines hit.",
-    benefits: ["No more manual data entry at year-end", "Automatic compliance checks", "Fewer costly filing mistakes"],
+    description: "We handle tax calculations, filing, and compliance tracking automatically, so your team isn't scrambling when deadlines hit and you never overpay or miss a return.",
+    benefits: ["No more manual data entry at year-end", "Automatic compliance checks", "Fewer costly filing mistakes and penalties"],
   },
   {
-    icon: ScanLine,
-    title: "Document Processing",
-    description: "Invoices, contracts, applications: we build pipelines that extract the right data and route it where it needs to go, without anyone having to touch it.",
-    benefits: ["Process documents in seconds, not hours", "Handles PDFs, emails, and scanned forms", "No manual data entry"],
+    icon: Calculator,
+    title: "Accounting Automation",
+    description: "Invoicing, reconciliation, expenses, and reporting run themselves. Your books stay accurate and up to date without the month-end fire drill.",
+    benefits: ["Automated invoicing and reconciliation", "Real-time, always-accurate books", "Close the month in hours, not days"],
   },
   {
     icon: Workflow,
-    title: "Workflow Automation",
-    description: "We map your most time-consuming processes and replace them with automated pipelines that run quietly in the background.",
-    benefits: ["Reclaim hours every week", "Consistent execution every time", "Runs even when your team is offline"],
+    title: "Digital Workflows",
+    description: "Replace paperwork with digital workflows: approvals, tenders, purchase orders, and finance requests move through the system automatically, fully tracked.",
+    benefits: ["Paperless tender and approval workflows", "Every step logged for a clear audit trail", "Nothing stuck waiting on a signature"],
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Financial Visibility",
+    description: "Live dashboards make your money visible: see cash flow, spending, and margins in real time so you can make data-driven decisions and spot where money is leaking.",
+    benefits: ["See where money is being lost", "Full transparency across departments", "Data-driven decisions, not guesswork"],
   },
   {
     icon: Bot,
-    title: "AI Assistants",
-    description: "We build AI assistants trained on your business: your products, your processes, your tone. Your team stops answering the same questions all day.",
-    benefits: ["Instant responses to common questions", "Handles intake forms and basic support", "Gets smarter as your business grows"],
+    title: "AI Finance Agents",
+    description: "Custom AI agents trained on your financial data help managers plan budgets, flag anomalies, and answer questions instantly, so decisions are backed by numbers.",
+    benefits: ["Ask your data questions in plain language", "Automatic alerts on unusual spending", "Smarter budgeting and forecasting"],
   },
   {
-    icon: Plug,
-    title: "System Integrations",
-    description: "Your tools should talk to each other. We connect your CRM, accounting software, inbox, and other platforms so nothing slips through the cracks.",
-    benefits: ["No more copying data between platforms", "Syncs in real time", "Works with the tools you already use"],
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics & Reporting",
-    description: "Stop pulling reports manually. We build dashboards that update automatically so you always know what's happening in your business.",
-    benefits: ["Live data, no spreadsheet maintenance", "Spot problems before they get expensive", "Reports your whole team can actually read"],
+    icon: Boxes,
+    title: "Affordable ERP for SMEs",
+    description: "Get the finance backbone big companies pay thousands for, at a price SMEs can afford. One connected system for tax, accounting, workflows, and reporting.",
+    benefits: ["Enterprise-grade ERP without the enterprise price", "One system instead of scattered spreadsheets", "Scales as your business grows"],
   },
 ];
 
@@ -122,7 +122,7 @@ export function ServicesSection() {
           <h2 className="text-white">Our Services</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            We build practical technology that solves specific problems, from automating repetitive tasks to securing your systems and connecting your tools.
+            We solve the finance problems that hold SMEs back, from tax and accounting to paperless workflows, real-time visibility, and AI-driven decisions.
           </p>
         </motion.div>
 

@@ -13,28 +13,28 @@ interface Step {
 const steps: Step[] = [
   {
     number: 1,
-    title: "Tell us what's slowing you down",
-    description: "We start with a conversation about what tasks take too long, what keeps breaking, and where your team is spending time it shouldn't have to.",
+    title: "Tell us where money is leaking",
+    description: "We start with a conversation about your finance operations: the manual paperwork, the reporting delays, and the places where costs and cash are hard to see.",
   },
   {
     number: 2,
-    title: "We dig into your workflow",
-    description: "Our team maps out your current processes and identifies which ones are worth automating first. We look for quick wins alongside longer-term improvements.",
+    title: "We map your finance workflows",
+    description: "Our team reviews how tax, accounting, approvals, and reporting work today, then identifies which processes to automate first for the fastest impact.",
   },
   {
     number: 3,
-    title: "We design a solution for you",
-    description: "No templates. We build an automation plan specific to how your business actually works, then walk you through it before anything gets built.",
+    title: "We design your ERP setup",
+    description: "No templates. We configure a finance system around how your business actually runs, then walk you through it before anything goes live.",
   },
   {
     number: 4,
-    title: "We build and connect everything",
-    description: "Our engineers build and test your automation, connect it to your existing tools, and make sure it works the way it should before handing it over.",
+    title: "We build, connect, and go paperless",
+    description: "Our engineers set up your automations, dashboards, and AI agents, connect them to your existing tools and data, and test everything before handover.",
   },
   {
     number: 5,
     title: "We stay with you after launch",
-    description: "Once everything is live, we monitor it, fix issues, and make improvements as your business changes. You're not on your own.",
+    description: "Once you're live, we monitor the system, refine reports and workflows, and adapt as your business changes. You're not on your own.",
   },
 ];
 
@@ -56,7 +56,7 @@ export function HowItWorksSection() {
           <h2 className="text-white">How It Works</h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
           <p className="text-white/70 max-w-xl text-base leading-relaxed">
-            From the first call to a live, running system. Here's what working with us actually looks like.
+            From the first call to a live finance system giving you full visibility. Here's what working with us actually looks like.
           </p>
         </motion.div>
 
@@ -129,7 +129,7 @@ export function HowItWorksSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-white/60 text-sm">Most clients see their first automation live within two weeks of the initial call.</p>
+          <p className="text-white/60 text-sm">Most clients have their first finance workflows automated within two weeks of the initial call.</p>
           <Button size="lg" onClick={handleScroll} className="gap-2">
             Book Your Free Call <ArrowRight size={16} />
           </Button>

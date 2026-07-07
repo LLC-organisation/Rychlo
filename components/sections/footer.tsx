@@ -29,7 +29,7 @@ export function Footer() {
             />
             <span className="text-white font-semibold">Akihlee</span>
           </div>
-          <span className="text-blue-400 text-xs font-medium ml-9">Build. Automate. Scale.</span>
+          <span className="text-blue-400 text-xs font-medium ml-9">Automate Finance. See Everything.</span>
         </div>
 
         <nav className="flex items-center gap-6">
