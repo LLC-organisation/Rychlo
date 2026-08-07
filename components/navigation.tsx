@@ -17,7 +17,7 @@ const navLinks = [
 const productLinks = [
   {
     label: "Akihlee",
-    href: "https://akihlee.3uqh.vercel.app",
+    href: "https://akihlee-3uqh.vercel.app",
     description: "Coming soon to app.akihlee.com",
   },
 ];
